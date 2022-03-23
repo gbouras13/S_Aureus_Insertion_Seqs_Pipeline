@@ -4,16 +4,11 @@ Ensures consistent variable names and file locations for the pipeline.
 """
 
 
-DBDIR = 'Databases'
-KRAKENTOOLSDIR = 'Kraken_Tools'
-
 ### OUTPUT DIRECTORY
 if config['Output'] is None:
     OUTPUT = 's_aureus_output'
 else:
     OUTPUT = config['Output']
-
-
 
 
 ### OUTPUT DIRs

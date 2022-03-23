@@ -1,0 +1,10 @@
+name: samtools
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - prokka
+    - pandas
+    - regex
+    - biopython

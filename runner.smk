@@ -4,7 +4,7 @@ Manual launch example:
 
 snakemake -c 1 -s runner.smk --use-conda --config Assemblies=Fastas/  --conda-create-envs-only --conda-frontend conda
 compute node
-snakemake -c 16 -s wgs_runner.smk --use-conda --config Assemblies=Fastas/ Output=out/
+snakemake -c 16 -s wgs_runner.smk --use-conda --config Assemblies=Fastas/ Output=out/ --force
 """
 
 
@@ -29,10 +29,8 @@ SAMPLES = sampleAssembliees.keys()
 
 # Import rules and functions
 include: "rules/targets.smk"
-include: "rules/bam_to_fastq.smk"
-include: "rules/kraken.smk"
-include: "rules/bracken.smk"
-include: "rules/assembly.smk"
+include: "rules/prokka.smk"
+
 
 rule all:
     input:
