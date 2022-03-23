@@ -16,7 +16,7 @@
 #SBATCH --mem=16GB                                              # specify memory required per node
 
 
-SNK_DIR="/hpcfs/users/a1667917/Kevin/WGS_TCGA_Kraken_Pipeline"
+SNK_DIR="/hpcfs/users/a1667917/s_aureus/S_Aureus_Pipeline"
 PROF_DIR="/hpcfs/users/a1667917/snakemake_slurm_profile"
 
 cd $SNK_DIR
@@ -24,6 +24,6 @@ cd $SNK_DIR
 module load Anaconda3/2020.07
 conda activate snakemake_clean_env
 
-
+# snakemake -c 1 -s runner.smk --use-conda --config Assemblies=/hpcfs/users/a1667917/s_aureus/total_fastas  Output=/hpcfs/users/a1667917/s_aureus/Insertion_Seqs_Out  --conda-create-envs-only --conda-frontend conda
 snakemake -c 1 -s runner.smk --use-conda --config Assemblies=/hpcfs/users/a1667917/s_aureus/total_fastas  Output=/hpcfs/users/a1667917/s_aureus/Insertion_Seqs_Out --profile wgs_tcga
 conda deactivate
