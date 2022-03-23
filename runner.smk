@@ -24,13 +24,15 @@ OUTPUT = config['Output']
 
 # Parse the samples and read files
 include: "rules/samples.smk"
-sampleAssembliees = parseSamples(ASSEMBLIES)
-SAMPLES = sampleAssembliees.keys()
+sampleAssemblies = parseSamples(ASSEMBLIES)
+SAMPLES = sampleAssemblies.keys()
 
 # Import rules and functions
 include: "rules/targets.smk"
 include: "rules/prokka.smk"
-
+include: "rules/cluster.smk"
+include: "rules/collate.smk"
+include: "rules/summarise.smk"
 
 rule all:
     input:
