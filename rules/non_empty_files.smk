@@ -11,10 +11,10 @@ def samplesFromDirectoryNonEmpty(dir):
     samples = []
     for sample in samples_all:
         # don't include all_samples
-        if str(sample) != "all_samples"
-        file = str(sample) + '_isfinder.ffn'
-        if os.stat(os.path.join(dir, file)).st_size != 0:
-            samples.append(sample)
+        if str(sample) != "all_samples":
+            file = str(sample) + '_isfinder.ffn'
+            if os.stat(os.path.join(dir, file)).st_size != 0:
+                samples.append(sample)
 
     #samples2 = chain(*samples)
     for sample in samples:
