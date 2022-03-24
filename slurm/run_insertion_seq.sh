@@ -11,7 +11,7 @@
 # Resources allocation request parameters
 #SBATCH -p batch
 #SBATCH -N 1              	                                # number of tasks (sequential job starts 1 task) (check this if your job unexpectedly uses 2 nodes)
-#SBATCH -c 16              	                                # number of cores (sequential job calls a multi-thread program that uses 8 cores)
+#SBATCH -c 1              	                                # number of cores (sequential job calls a multi-thread program that uses 8 cores)
 #SBATCH --time=06:00:00                                         # time allocation, which has the format (D-HH:MM), here set to 1 hou                                           # generic resource required (here requires 1 GPUs)
 #SBATCH --mem=16GB                                              # specify memory required per node
 
@@ -25,5 +25,8 @@ module load Anaconda3/2020.07
 conda activate snakemake_clean_env
 
 # snakemake -c 1 -s runner.smk --use-conda --config Assemblies=/hpcfs/users/a1667917/s_aureus/total_fastas  Output=/hpcfs/users/a1667917/s_aureus/Insertion_Seqs_Out  --conda-create-envs-only --conda-frontend conda
-snakemake -c 1 -s runner.smk --use-conda --config Assemblies=/hpcfs/users/a1667917/s_aureus/total_fastas  Output=/hpcfs/users/a1667917/s_aureus/Insertion_Seqs_Out --profile $PROF_DIR/s_aureus
+#snakemake -c 1 -s runner.smk --use-conda --config Assemblies=/hpcfs/users/a1667917/s_aureus/total_fastas  Output=/hpcfs/users/a1667917/s_aureus/Insertion_Seqs_Out --profile $PROF_DIR/s_aureus
+
+python3 run_pipeline.py -c 1 -f Assemblies=/hpcfs/users/a1667917/s_aureus/total_fastas -o /hpcfs/users/a1667917/s_aureus/Insertion_Seqs_Out -p $PROF_DIR/s_aureus
+
 conda deactivate

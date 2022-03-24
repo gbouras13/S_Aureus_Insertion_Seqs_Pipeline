@@ -41,9 +41,9 @@ def parseSamplesEmpty(readFileDir):
         sys.exit(1)
     if len(sampleDict.keys()) == 0:
         sys.stderr.write("\n"
-                         "    FATAL: We could not detect any samples at all.\n"
+                         "    There are no empty samples.\n"
                          "\n")
-        sys.exit(1)
+        sampleDict = {}
     return sampleDict
 
 def writeEmptyCsv(list, dir):
