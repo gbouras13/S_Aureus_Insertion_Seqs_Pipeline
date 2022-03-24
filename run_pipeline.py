@@ -23,9 +23,9 @@ output = "Output="+str(args.outdir)
 # make the profile optional
 
 if args.profile is None:
-    sp.call(["snakemake", "-c", args.cores, "-s", "runner.smk", "--use-conda", "--config", "Assemblies=",  args.fasta,  "Output=",  args.outdir])
-    sp.call(["snakemake", "-c", args.cores, "-s", "runner2.smk", "--use-conda", "--config", "Assemblies=",  args.fasta, "Output=",  args.outdir])
+    sp.call(["snakemake", "-c", args.cores, "-s", "runner.smk", "--use-conda", "--config", assemblies, output ])
+    sp.call(["snakemake", "-c", args.cores, "-s", "runner2.smk", "--use-conda", "--config", assemblies, output ])
 else:
-    sp.call(["snakemake", "-c", args.cores, "-s", "runner.smk", "--use-conda", "--config", "Assemblies=",  args.fasta,  "Output=",  args.outdir, "--profile", args.profile ])
-    sp.call(["snakemake", "-c", args.cores, "-s", "runner2.smk", "--use-conda", "--config", "Assemblies=",  args.fasta, "Output=",  args.outdir, "--profile", args.profile])
+    sp.call(["snakemake", "-c", args.cores, "-s", "runner.smk", "--use-conda", "--config", assemblies, output, "--profile", args.profile ])
+    sp.call(["snakemake", "-c", args.cores, "-s", "runner2.smk", "--use-conda", "--config", assemblies, output, "--profile", args.profile ])
 
