@@ -21,20 +21,33 @@ rule prokka:
         prokka --outdir {params[0]}  --prefix {wildcards.sample} {input[0]} --force
         """
 
-rule clean_gff_keep_isfinder:
-    """Extract only the rows of gff to read as dataframe and keep only those with ISfinder."""
+rule clean_gff:
+    """Extract only the rows of gff to read as dataframe."""
     input:
         os.path.join(TMP,"{sample}","{sample}.gff")
     output:
-        os.path.join(TMP,"{sample}_clean.gff")
+        os.path.join(TMP,"{sample}_no_fasta.gff")
     threads:
         1
     resources:
         mem_mb=BigJobMem
     shell:
         """
-        awk '/##sequence-region/{{flag=1;next}}/##FASTA/{{flag=0}}flag' {input[0]} | grep "ISfinder" > {output[0]}
+        awk '/##sequence-region/{{flag=1;next}}/##FASTA/{{flag=0}}flag' {input[0]} > {output[0]}
         """
+
+rule get_isfinder_only:
+    """Extract only rows with IS Finder."""
+    input:
+        os.path.join(TMP,"{sample}_no_fasta.gff")
+    output:
+        os.path.join(TMP,"{sample}_clean.gff")
+    threads:
+        1
+    resources:
+        mem_mb=BigJobMem
+    script:
+        '../scripts/is_finder_gff.py'
 
 rule parse_gff:
     """ Parse the cleaned ISfinder gff """

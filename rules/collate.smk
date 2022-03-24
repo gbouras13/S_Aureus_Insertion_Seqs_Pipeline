@@ -18,8 +18,8 @@ rule collate_per_sample:
 rule aggr_collate:
     """Aggregate."""
     input:
-        expand(os.path.join(RESULTS,"{sample}_final_per_is.csv"), sample = SAMPLES),
-        expand(os.path.join(RESULTS,"{sample}_summary.csv"), sample = SAMPLES)
+        expand(os.path.join(RESULTS,"{sample}_final_per_is.csv"), sample = SAMPLES_not_empty),
+        expand(os.path.join(RESULTS,"{sample}_summary.csv"), sample = SAMPLES_not_empty)
     output:
         os.path.join(LOGS, "aggr_collate.txt")
     threads:

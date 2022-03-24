@@ -1,5 +1,5 @@
 rule cluster_each_seq:
-    """Run prokka."""
+    """Run mmseqs."""
     input:
         os.path.join(TMP,"{sample}_isfinder.ffn" )
     output:
@@ -22,7 +22,7 @@ rule cluster_each_seq:
 rule concat_ffn:
     """concate ffns"""
     input:
-        expand(os.path.join(TMP,"{sample}_isfinder.ffn" ), sample = SAMPLES)
+        expand(os.path.join(TMP,"{sample}_isfinder.ffn" ), sample = SAMPLES_not_empty)
     output:
         os.path.join(TMP,"all_samples_isfinder.ffn" )
     threads:
@@ -61,7 +61,7 @@ rule cluster_all_seqs:
 rule aggr_cluster:
     """Aggregate."""
     input:
-        expand(os.path.join(MMSEQS2, "{sample}_all_seqs.fasta"), sample = SAMPLES),
+        expand(os.path.join(MMSEQS2, "{sample}_all_seqs.fasta"), sample = SAMPLES_not_empty),
         os.path.join(MMSEQS2, "total_all_samples_all_seqs.fasta")
     output:
         os.path.join(LOGS, "aggr_cluster.txt")

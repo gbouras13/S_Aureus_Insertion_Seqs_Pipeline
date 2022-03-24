@@ -1,7 +1,7 @@
 rule summarise:
     """Collate."""
     input:
-        finals = expand(os.path.join(RESULTS,"{sample}_final_per_is.csv"), sample = SAMPLES),
+        finals = expand(os.path.join(RESULTS,"{sample}_final_per_is.csv"), sample = SAMPLES_not_empty),
         cluster = os.path.join(MMSEQS2, "total_all_samples_cluster.tsv")
     output:
         os.path.join(RESULTS,"total_all_samples_final_per_is.csv"),

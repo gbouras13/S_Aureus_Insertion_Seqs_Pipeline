@@ -4,7 +4,7 @@ Manual launch example:
 
 snakemake -c 1 -s runner.smk --use-conda --config Assemblies=Fastas/  --conda-create-envs-only --conda-frontend conda
 compute node
-snakemake -c 16 -s wgs_runner.smk --use-conda --config Assemblies=Fastas/ Output=out/ --force
+snakemake -c 16 -s runner.smk --use-conda --config Assemblies=Fastas/ Output=out/ 
 """
 
 
@@ -30,9 +30,22 @@ SAMPLES = sampleAssemblies.keys()
 # Import rules and functions
 include: "rules/targets.smk"
 include: "rules/prokka.smk"
-include: "rules/cluster.smk"
-include: "rules/collate.smk"
-include: "rules/summarise.smk"
+
+# # if empty remove samples
+
+# include: "rules/empty_files.smk"
+# include: "rules/non_empty_files.smk"
+
+# sampleAssemblies_not_empty = parseSamplesNonEmpty(TMP)
+# SAMPLES_not_empty = sampleAssemblies_not_empty.keys()
+# sampleAssemblies_empty = parseSamplesEmpty(TMP)
+# SAMPLES_empty = sampleAssemblies_empty.keys()
+
+# writeEmptyCsv(SAMPLES_empty, RESULTS)
+
+# include: "rules/cluster.smk"
+# include: "rules/collate.smk"
+# include: "rules/summarise.smk"
 
 rule all:
     input:
