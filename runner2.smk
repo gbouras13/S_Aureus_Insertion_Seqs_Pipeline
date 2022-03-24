@@ -1,5 +1,5 @@
 """
-The 2nd runner file - need to break when we have empty fastas
+The 2nd runner file - need to break when we have empty fastas or else we are clustering nothing and mmseqs2 breaks.
 
 snakemake -c 1 -s runner2.smk --use-conda --config Assemblies=Fastas/  --conda-create-envs-only --conda-frontend conda
 snakemake -c 16 -s runner2.smk --use-conda --config Assemblies=Fastas/ Output=out/ 
