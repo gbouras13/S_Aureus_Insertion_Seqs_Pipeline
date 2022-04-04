@@ -16,7 +16,7 @@
 #SBATCH --mem=16GB                                              # specify memory required per node
 
 
-SNK_DIR="/hpcfs/users/a1667917/s_aureus/S_Aureus_Pipeline"
+SNK_DIR="/hpcfs/users/a1667917/s_aureus/S_Aureus_Insertion_Seqs_Pipeline"
 PROF_DIR="/hpcfs/users/a1667917/snakemake_slurm_profile"
 
 cd $SNK_DIR
